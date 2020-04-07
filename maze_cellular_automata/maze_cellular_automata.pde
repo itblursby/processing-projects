@@ -1,4 +1,3 @@
-
 int cellsize = 2;
 color dead = color(0, 0, 0);
 color alive = color(255, 255, 255);

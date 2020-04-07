@@ -1,9 +1,9 @@
-int cir = 100;
+int cir = 40;
 Circle[] c = new Circle[cir];
 int drag = -1;
 float ag = 1;
-float min = 20;
-float max = 40;
+float min = 50;
+float max = 100;
 void setup() {
   pixelDensity(1);
   size(600, 600);

@@ -33,8 +33,8 @@ class Circle {
   }
   void move() {
     
-    set_new_center(2*x-px+(x-width/2)/-dis(x,y,width/2,height/2),2*y-py+(y-height/2)/-dis(x,y,width/2,height/2));
-    //set_new_center(2*x-px,2*y-py+1);
+    //set_new_center(2*x-px+(x-width/2)/-dis(x,y,width/2,height/2),2*y-py+(y-height/2)/-dis(x,y,width/2,height/2));
+    set_new_center(2*x-px,2*y-py+0.5);
     
 
 }

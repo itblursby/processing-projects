@@ -1,7 +1,7 @@
 IntList i = new IntList();
-int sw = 2;
-int sizex = 100;
-int sizey = 3;
+int sw = 1;
+int sizex = 20;
+int sizey = 10;
 int a = 0;
 int h;
 int j = 0;
