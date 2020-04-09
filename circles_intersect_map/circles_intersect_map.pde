@@ -1,5 +1,7 @@
 //submission for:
 //https://www.reddit.com/r/generative/comments/e12s8n/community_exhibition/
+
+
 Circle[] circles;
 int a = 2000;
 
@@ -95,6 +97,7 @@ void circlesOverlap(float x1, float y1, float r1, float x2, float y2, float r2) 
     }
   }
 }
+//https://www.desmos.com/calculator/gbpyskmd7i
 float getAngle(float x2, float y2, float x1, float y1) {
   float d = sqrt((x1-x2)*(x1-x2)+(y1-y2)*(y1-y2));
   if (x1>x2) {
