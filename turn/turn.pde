@@ -1,20 +1,21 @@
-Turn[] s = new Turn[100];
-int reso = 1;
+Turn[] s = new Turn[50];
+PImage pic;
 void setup() {
+  pic = loadImage("epic.png");
   //pixelDensity(displayDensity());
   size(600, 600);
   strokeWeight(1);
   noFill();
   
   for (int i = 0; i < s.length; i++) {
-    s[i] = new Turn(random(width), random(height), random(min(width, height)/4), random(2*PI));
+    s[i] = new Turn(random(width), random(height), random(min(width, height)/4), random(TWO_PI));
   }
 }
 int pos = 0;
 void draw() {
   for (int i = 0; i < 200; i++) {
     pos++;
-    pointAt(pos%(width*reso), pos/(height*reso));
+    pointAt(pos%(width), pos/(height));
   }
   //for (int i = 0; i < width; i++) {
   //  for (int j = 0; j < height; j++) {
@@ -28,7 +29,7 @@ void draw() {
   //    //rect(i, j, 1, 1);
   //  }
   //}
-  if (pos > width*height*reso*reso){
+  if (pos > width*height){
     noLoop();
     saveFrame();
   }
@@ -86,6 +87,7 @@ void pointAt(float x, float y) {
     p = s[e].turn(p[0], p[1]);
   }
 
-  stroke(255*p[0]/width, 255*p[1]/height, 255);
+  stroke(255*p[0]/width, 255, 255*p[1]/height);
+  //stroke(pic.pixels[floor(p[0]*pic.width/width)+pic.width*floor(p[1]*pic.height/height)]);
   point(x, y);
 }
