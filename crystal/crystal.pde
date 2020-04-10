@@ -1,7 +1,7 @@
-Turn[] s = new Turn[50];
-PImage pic;
+Turn[] s = new Turn[0];
+//PImage pic;
 void setup() {
-  pic = loadImage("epic.png");
+  //pic = loadImage("epic.png");
   //pixelDensity(displayDensity());
   size(600, 600);
   strokeWeight(1);
@@ -14,8 +14,9 @@ void setup() {
 int pos = 0;
 void draw() {
   for (int i = 0; i < 200; i++) {
-    pos++;
+    
     pointAt(pos%(width), pos/(height));
+    pos++;
   }
   //for (int i = 0; i < width; i++) {
   //  for (int j = 0; j < height; j++) {
@@ -86,8 +87,11 @@ void pointAt(float x, float y) {
   for (int e = 0; e < s.length; e++) {
     p = s[e].turn(p[0], p[1]);
   }
-
-  stroke(255*p[0]/width, 255, 255*p[1]/height);
+  
+  stroke(getColor(p[0]/width,p[1]/height));
   //stroke(pic.pixels[floor(p[0]*pic.width/width)+pic.width*floor(p[1]*pic.height/height)]);
   point(x, y);
+}
+color getColor(float a, float b){
+  return color(2*255*min(a,1-a),2*255*(min(b,1-b)),255);
 }
