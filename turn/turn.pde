@@ -1,20 +1,27 @@
-Turn[] s = new Turn[1];
+Turn[] s = new Turn[50];
 void setup() {
   size(300, 300);
+  noStroke();
+  for (int i = 0; i < s.length; i++){
+    s[i] = new Turn(random(width),random(height),random(min(width,height)/2),random(2*PI));
+  }
 }
-
+float b = 0;
 void draw() {
   noFill();
   background(255);
-  Turn a = new Turn(mouseX, mouseY, 50, PI/2);
-  stroke(0);
-  ellipse(275, 275, 2, 2);
-  if (a.turn(275, 275)) {
-    stroke(255, 0, 0);
-  }
-  for (int i = -1; i < 2; i++) {
-    for (int j = -1; j < 2; j++) {
-      ellipse(mouseX+i*300, mouseY+j*300, 100, 100);
+  b += 0.01;
+  Turn a = new Turn(300, 150, 50, b);
+  for (int i = 0; i < width; i++){
+    for (int j = 0; j < height; j++){
+      
+      float[] p = new float[] {i,j};
+      for (int e = 0; e < s.length; e++){
+        p = s[e].turn(p[0], p[1]);
+      }
+  
+      fill(255*p[0]/300,255*p[1]/300,0);
+      rect(i,j,1,1);
     }
   }
 }
@@ -29,7 +36,7 @@ class Turn {
     r = r_;
     deg = deg_;
   }
-  boolean turn(float mx, float my) {
+  float[] turn(float mx, float my) {
     float dx = mx - x;
     if (dx > width/2) {
       dx = -(width - dx);
@@ -42,16 +49,16 @@ class Turn {
     } else if (dy < -height/2) {
       dy = -(-height - dy);
     }
-    float angle = getAngle(x,y,x+dx,y+dy);
+    float angle = getAngle(x, y, x+dx, y+dy);
     float d = sqrt(dx*dx+dy*dy);
     if (d<r) {
-      
-      line(x,y,x+dx,y+dy);
-      stroke(0,255,0);
-      line(x,y,x+d*cos(angle+deg),y+d*sin(angle+deg));
-      return true;
+
+      //line(x, y, x+dx, y+dy);
+      //stroke(0, 255, 0);
+      //line(x, y, x+d*cos(angle+deg), y+d*sin(angle+deg));
+      return new float[]{mod(x+d*cos(angle+deg),width),mod(y+d*sin(angle+deg),height)};
     }
-    return false;
+    return new float[]{mx, my};
   }
 }
 float getAngle(float x2, float y2, float x1, float y1) {
@@ -61,4 +68,7 @@ float getAngle(float x2, float y2, float x1, float y1) {
   } else {
     return PI-asin((y1-y2)/d);
   }
+}
+float mod(float a, float b) {
+  return (a % b + b) % b;
 }
