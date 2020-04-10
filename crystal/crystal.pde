@@ -1,5 +1,6 @@
-Turn[] s = new Turn[0];
+Turn[] s = new Turn[50];
 //PImage pic;
+int r = 1;
 void setup() {
   //pic = loadImage("epic.png");
   //pixelDensity(displayDensity());
@@ -8,14 +9,14 @@ void setup() {
   noFill();
   
   for (int i = 0; i < s.length; i++) {
-    s[i] = new Turn(random(width), random(height), random(min(width, height)/4), random(TWO_PI));
+    s[i] = new Turn(random(width), random(height), random(min(width, height)/16,min(width, height)/4), random(TWO_PI));
   }
 }
 int pos = 0;
 void draw() {
   for (int i = 0; i < 200; i++) {
     
-    pointAt(pos%(width), pos/(height));
+    pointAt((pos%(width*2))/2, pos/(height*2));
     pos++;
   }
   //for (int i = 0; i < width; i++) {
@@ -30,7 +31,7 @@ void draw() {
   //    //rect(i, j, 1, 1);
   //  }
   //}
-  if (pos > width*height){
+  if (pos > width*height*4){
     noLoop();
     saveFrame();
   }
@@ -94,4 +95,9 @@ void pointAt(float x, float y) {
 }
 color getColor(float a, float b){
   return color(2*255*min(a,1-a),2*255*(min(b,1-b)),255);
+}
+void keyPressed() { 
+  if (key == 'p'){
+    saveFrame("test.tif");
+  }
 }
