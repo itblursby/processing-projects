@@ -1,9 +1,7 @@
 Turn[] s = new Turn[50];
-//PImage pic;
-int r = 1;
+float r = 1;
 void setup() {
-  //pic = loadImage("epic.png");
-  //pixelDensity(displayDensity());
+  pixelDensity(displayDensity());
   size(600, 600);
   strokeWeight(1);
   noFill();
@@ -16,7 +14,7 @@ int pos = 0;
 void draw() {
   for (int i = 0; i < 200; i++) {
     
-    pointAt((pos%(width*2))/2, pos/(height*2));
+    pointAt((pos%(width*r))/r, pos/(height*r));
     pos++;
   }
   //for (int i = 0; i < width; i++) {
