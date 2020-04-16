@@ -1,6 +1,6 @@
 Shift[] arr = new Shift[30];
 void setup() {
-  size(1440, 900);
+  size(600, 600);
   for (int i = 0; i < arr.length; i++) {
     if (random(1)>0.5) {
       arr[i] = new Shift(floor(random(height)), floor(random(height/2)), floor(random(width/4, width/2)), true);
@@ -32,7 +32,7 @@ void draw() {
   //}
 }
 color getColor(float a, float b) {
-  return color(2*255*min(a, 1-a), 2*255*(min(b, 1-b)), 255);
+  return color(255,2*255*min(a, 1-a),2*255*(min(b, 1-b)));
 }
 void pointAt(int x, int y) {
   int[] c = new int[] {x, y};
