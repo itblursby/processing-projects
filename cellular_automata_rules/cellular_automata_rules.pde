@@ -1,5 +1,6 @@
 /*
 rulestrings
+T(ind) turn into index
 
  */
 
