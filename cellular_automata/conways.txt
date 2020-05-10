@@ -1,0 +1,13 @@
+alive {
+	if (alive < 2){
+		change(dead)
+	}
+	if (alive > 3){
+		change(dead)
+	}
+}
+dead {
+	if (alive == 3){
+		change(alive)
+	}
+}
