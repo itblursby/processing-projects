@@ -8,18 +8,21 @@ float maxreal; //upper right corner
 float maximag; 
 float pixel = (maxreal-minreal)/width;
 void setup() {
-  size(500, 300);
+  size(300, 500);
   //colorMode(HSB, 100);
+  
   minreal = -2;
   minimag = -2;
   if (width > height) {
     maximag = 2;
-    maxreal = (width/height)*4-2;
+    maxreal = (width/(float)height)*4-2;
+    
   }
-  if (width > height) {
-    maximag = 2;
-    maxreal = (width/height)*4-2;
+  if (height > width) {
+    maxreal = 2;
+    maximag = (height/(float)width)*4-2;
   }
+  
   pixel = (maxreal-minreal)/width;
   loadPixels();
   frameRate(30);
