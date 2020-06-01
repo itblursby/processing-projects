@@ -1,7 +1,7 @@
 float min = 1;
 float mincut = 0.01;
 float maxcut = 0.99;
-float zoom = 1.05;
+float zoom = 1.02;
 
 float temp;
 Rectangle middle; 

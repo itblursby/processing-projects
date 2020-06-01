@@ -1,28 +1,77 @@
-int iter = 100; //number of iterations
-int power = 2; //power in z = z^[power] + c
-float window = 4; //viewing window size
-Complex pos = new Complex(-2, -2); //position at top right corner of viewing window
+float creal; //C real value
+float cimag; //C imaginary value
+float zreal; //Z real value
+float zimag; //Z imaginary value
+float minreal; //lower left corner
+float minimag;
+float maxreal; //upper right corner
+float maximag; 
+float pixel = (maxreal-minreal)/width;
 void setup() {
-  size(200, 200);
+  size(500, 300);
+  //colorMode(HSB, 100);
+  minreal = -2;
+  minimag = -2;
+  if (width > height) {
+    maximag = 2;
+    maxreal = (width/height)*4-2;
+  }
+  if (width > height) {
+    maximag = 2;
+    maxreal = (width/height)*4-2;
+  }
+  pixel = (maxreal-minreal)/width;
+  loadPixels();
+  frameRate(30);
 }
 void draw() {
-  background(0);
-  for (int x = 0; x < width; x++) {
-    for (int y = 0; y < height; y++) {
-      float real = 0.0 + pos.getReal() + x*(window/width);
-      float imag = 0.0 + pos.getImag() + (-y)*(window/height);
-      Complex c = new Complex(real, imag);
-      Complex z = new Complex(0,0);
-      int i;
-      stroke(0);
-      for (i = 0; i < iter; i++){
-        z = z.sq();
-        z.add(c);
-        if (z.absqr()>4){
-          stroke(255);
-        }
+
+  //background(255);
+  for (int a = 0; a < width*height; a++) {
+    creal = minreal+(maxreal - minreal)*((a%width)/(float)width); //initializing C
+    cimag = minimag+(maximag - minimag)*((a/width)/(float)height);
+    zreal = 0; //initializing Z
+    zimag = 0;
+    pixels[a] = color(0, 0, 0);
+    for (int i = 0; i < 200; i++) {
+      float nreal = zreal*zreal-zimag*zimag;
+      float nimag = 2*zreal*zimag;
+      nreal += creal;
+      nimag += cimag;
+      zreal = nreal;
+      zimag = nimag;
+      if (zreal * zreal + zimag * zimag > 4) {
+        pixels[a] = color(255);
+        break;
       }
-      point(x,y);
     }
+    
   }
+  updatePixels();
+  if (mousePressed){
+    minreal -= (mouseX-pmouseX)*pixel;
+    maxreal -= (mouseX-pmouseX)*pixel;
+    minimag -= (mouseY-pmouseY)*pixel;
+    maximag -= (mouseY-pmouseY)*pixel;
+  }
+  //if (keyPressed) {
+  //  increal = (maxreal-minreal)/150;
+  //  incimag = (maximag-minimag)/150;
+  //  if (key == 'w' || key == 'W') {
+  //    minimag -= incimag;
+  //    maximag -= incimag;
+  //  }
+  //  if (key == 's' || key == 'S') {
+  //    minimag += incimag;
+  //    maximag += incimag;
+  //  }
+  //  if (key == 'a' || key == 'A') {
+  //    minreal += increal;
+  //    maxreal += increal;
+  //  }
+  //  if (key == 'd' || key == 'D') {
+  //    minreal -= increal;
+  //    maxreal -= increal;
+  //  }
+  //}
 }

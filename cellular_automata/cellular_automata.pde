@@ -1,25 +1,33 @@
-int cellsize = 1;
-String rules = "C alive{}C dead{}";
+int cellsize = 10;
+String rules = "";
+ArrayList<String> segmentslist = new ArrayList<String>(0);
 
 enum Neighborhood {
   Normal, Orthagonal;
 }
-enum Compare{
+
+Neighborhood nbType = Neighborhood.Normal;
+enum Compare {
   lessequal, less, equal, greater, greaterequal;
 }
-Neighborhood neighborType = Neighborhood.Normal;
 BufferedReader r;
 void setup() {
+  size(300, 300);
   try {
     r = createReader("conways.txt");
-    for (int i = 0; i < 11; i++){
-      
-      println(r.readLine());
+    while (true) {
+      String temp = r.readLine();
+      if (temp == null) {
+        break;
+      } else {
+        rules += temp;
+      }
     }
   } 
   catch (IOException e) {
     e.printStackTrace();
   }
+  print(rules);
 }
 void draw() {
 }

@@ -1,12 +1,15 @@
-BestCandidate s = new BestCandidate(0, 100);
+PVector pos;
+PVector center = new PVector(300, 300);
+PVector n;
 void setup() {
-  size(100, 600);
-  pixelDensity(displayDensity());
-}
-int a = 0;
-void draw() {
 
-  a++;
-  line(0, a*5, 100, a*5);
-  ellipse(s.nextSample(0, 100), a*5, 5, 5);
+  size(600, 600);
+}
+void draw() {
+  background(255);
+  pos = new PVector(mouseX,mouseY);
+  n = PVector.add(center, PVector.mult(PVector.sub(pos, center), (200.0/pos.dist(center))));
+  ellipse(pos.x,pos.y,10,10);
+  ellipse(300,300,10,10);
+  ellipse(n.x,n.y,10,10);
 }

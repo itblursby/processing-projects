@@ -1,6 +1,6 @@
 Shift[] arr = new Shift[30];
 void setup() {
-  size(600, 600);
+  size(375, 667);
   for (int i = 0; i < arr.length; i++) {
     if (random(1)>0.5) {
       arr[i] = new Shift(floor(random(height)), floor(random(height/2)), floor(random(width/4, width/2)), true);
