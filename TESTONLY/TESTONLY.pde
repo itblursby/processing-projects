@@ -1,15 +1,17 @@
-PVector pos;
-PVector center = new PVector(300, 300);
-PVector n;
-void setup() {
-
-  size(600, 600);
+void setup(){
+  size(600,600);
+  fill(0);
 }
-void draw() {
+
+float a = 300;
+float mouse = 0;
+void draw(){
   background(255);
-  pos = new PVector(mouseX,mouseY);
-  n = PVector.add(center, PVector.mult(PVector.sub(pos, center), (200.0/pos.dist(center))));
-  ellipse(pos.x,pos.y,10,10);
-  ellipse(300,300,10,10);
-  ellipse(n.x,n.y,10,10);
+  ellipse(300,300,a,a);
+  text(mouse,10,30);
+}
+void mouseWheel(MouseEvent e){
+  a-= e.getCount();
+  textSize(20);
+  mouse = e.getCount();
 }
