@@ -1,8 +1,8 @@
-int numlines = 50;
+int numlines = 30;
 int a = 0;
 Line[] lines = new Line[numlines];
 void setup() {
-  size(1440, 900);
+  size(600, 600);
   pixelDensity(displayDensity());
   for (int i = 0; i < numlines; i++) {
     lines[i] = new Line(new PVector(random(0, pixelWidth), random(0, pixelHeight)), new PVector(random(0, pixelWidth), random(0, pixelHeight)));
@@ -33,14 +33,13 @@ void draw() {
           }
         }
       }
-      
-      //if (sleng - leng > a) {
-      //  float s = smoothstep(a,a+10,sleng - leng);
-      //  color c = lines[index].col;
-      //  pixels[j*pixelWidth+i] = color(red(c)*s,green(c)*s,blue(c)*s);
-      //}
+
+
+      float s = smoothstep(a, a+6, sleng - leng);
       color c = lines[index].col;
-      pixels[j*pixelWidth+i] = c;
+      pixels[j*pixelWidth+i] = color(red(c)*s, green(c)*s, blue(c)*s);
+
+      //pixels[j*pixelWidth+i] = lines[sindex].col;
     }
   }
   updatePixels();
@@ -51,11 +50,21 @@ void draw() {
   saveFrame();
 }
 float smoothstep(float min, float max, float val) {
-  if (val >= max) {
-    return 1;
-  } else if (val <= min) {
-    return 0;
+  if (max > min) {
+    if (val >= max) {
+      return 1;
+    } else if (val <= min) {
+      return 0;
+    } else {
+      return (val-min)/(max-min);
+    }
   } else {
-    return (val-min)/(max-min);
+    if (val >= min) {
+      return 1;
+    } else if (val <= min) {
+      return 0;
+    } else {
+      return (val-min)/(max-min);
+    }
   }
 }

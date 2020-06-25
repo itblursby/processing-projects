@@ -4,6 +4,7 @@ class Line {
   float c;
   PVector p1;
   PVector p2;
+  //float rand = -1;
   color col = color(random(100,256),random(100,256),random(100,256));
   Line(float a_, float b_, float c_) {
     a = a_;
@@ -20,7 +21,7 @@ class Line {
     c = (p2.y*p1.x)-(p2.x*p1.y);
   }
   float distToPoint(PVector p){
-    return abs(a*p.x+b*p.y+c)/sqrt(a*a+b*b);
+    return (abs(a*p.x+b*p.y+c)/sqrt(a*a+b*b));
   }
   void display(){
     
