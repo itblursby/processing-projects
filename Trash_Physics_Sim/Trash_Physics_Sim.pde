@@ -1,9 +1,9 @@
-int cir = 40;
+int cir = 60;
 Circle[] c = new Circle[cir];
 int drag = -1;
 float ag = 1;
-float min = 50;
-float max = 100;
+float min = 25;
+float max = 50;
 void setup() {
   pixelDensity(1);
   size(600, 600);
@@ -85,7 +85,7 @@ float dis(float x1, float y1, float x2, float y2) {
   return sqrt((x1-x2)*(x1-x2)+(y1-y2)*(y1-y2));
 }
 void constrain() {
-  for (int t = 0; t < 10; t++) {
+  for (int t = 0; t < 5; t++) {
     collide();
   }
 }

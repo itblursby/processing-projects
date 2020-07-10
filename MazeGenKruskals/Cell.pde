@@ -1,28 +1,32 @@
 class Cell {
-  private Cell parent;  
-  private color col; //for debugging  
+  private Cell parent;
+  //basically boolean variables that will hold true
+  //if this cell is directly connected to the cell
+  //in a given direction
+  Passage right;
+  Passage left; 
+  Passage up;
+  Passage down;
   int x;
   int y;
+  int distance;
+  //used for pathfinding
+  Cell pre;
+  int cost;
   Cell(int x_, int y_) { 
+    parent = this;
     x = x_;
     y = y_;
-    parent = this;
-    colorMode(HSB, 100);
-    col = color(random(0, 100), 100, 100);
-  }
-  //gets the set color *USED FOR DEBUGGING*
-  color getColor() {
-    if (parent == this) {
-      return col;
-    }
-    return getRoot().getColor();
+    //right = new Passage(false);
+    //left = new Passage(false);
+    //up = new Passage(false);
+    //down = new Passage(false);
   }
   //sets a cell's parent and returns the parent.
   Cell setParent(Cell c) {
     this.parent = c;
     return c;
   }
-
   //returns the root representative of a cell.
   //if the cell's root is not its direct parent,
   //it will set the parent to its root. 
@@ -48,12 +52,14 @@ class Cell {
     }
     return false;
   }
-  void display() {
-
-    noStroke();
-    fill(getColor());
-    //colorMode(RGB,255);
-    //fill(0);
-    square(x*cellsize, y*cellsize, cellsize);
+  void setPre(Cell other) {
+    pre = other;
+    cost = other.cost + 1;
+  }
+  int getCost() {
+    return cost+this.getDistance();
+  }
+  int getDistance() {
+    return goalx-this.x+goaly-this.y;
   }
 }

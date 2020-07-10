@@ -1,10 +1,10 @@
 import java.util.Collections;
 import java.util.Random;
 
-final long seed = 2317499l;
-final int cellsize = 40;
-final int mw = 30;
-final int mh = 30;
+final long seed = 231749l;
+final int cellsize = 5;
+final int mw = 100;
+final int mh = 100;
 
 final int wallsize = 1;
 final int wallcount = mw*(mh-1)+mh*(mw-1);
@@ -38,7 +38,7 @@ void setup() {
 int a = 0;
 void draw() {
   
-  for (int i = 0; i < 1000; i++) {
+  for (int i = 0; i < 100; i++) {
     if (a < walls.size()) {
       if (walls.get(a).removable()) {
         walls.get(a).join();
@@ -51,9 +51,9 @@ void draw() {
     }
   }
   background(255);
-  //for (int i = 0; i < walls.size(); i++) {
-  //  walls.get(i).display();
-  //}
+  for (int i = 0; i < walls.size(); i++) {
+    walls.get(i).display();
+  }
   if (a >= walls.size()) {
     translate(10,10);
     noLoop();
