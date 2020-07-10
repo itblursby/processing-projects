@@ -1,7 +1,7 @@
 import java.util.Collections;
 import java.util.Random;
 
-final long seed = 29l;
+final long seed = 21l;
 final int cellsize = 5;
 final int mw = 100;
 final int mh = 100;
@@ -11,6 +11,9 @@ final int beginx = 0;
 final int beginy = mh-1;
 final int goalx = mw-1;
 final int goaly = 0;
+
+final int speed = 100;
+final boolean save = false;
 
 Random rand = new Random(seed);
 Cell[][] maze = new Cell[mw][mh];
@@ -22,7 +25,7 @@ ArrayList<Cell> stack = new ArrayList<Cell>(100);
 //2 for done
 int phase = 0;
 void setup() {
-  size(600, 600);
+  size(700, 700);
   for (int x = 0; x < mw; x++) {
     for (int y = 0; y < mh; y++) {
       maze[x][y] = new Cell(x, y);
@@ -52,78 +55,118 @@ void setup() {
 int counter = 0;
 void draw() {
   if (phase == 0) {
-    for (int i = 0; i < 100; i++) {
+    for (int i = 0; i < speed; i++) {
       if (counter < passages.size()) {
         if (!passages.get(counter).cellA.sameSet(passages.get(counter).cellB)) {
           passages.get(counter).unlock();
         }
         counter++;
       } else {
-
         break;
       }
     }
     background(255);
     display();
     if (counter == passages.size()) {
-      saveFrame("maze"+"w"+mw+"h"+mw+"s"+seed);
+      if (save) {
+        saveFrame("maze"+"w"+mw+"h"+mw+"s"+seed);
+      }
       phase = 1;
       println("1");
     }
   } else if (phase == 1) {
-    Cell current = stack.get(0);
-    int tempindex = 0;
-    for (int i = 0; i < stack.size(); i++) {
-      if (current.getCost() > stack.get(i).getCost()) {
-        current = stack.get(i);
-        tempindex = i;
+    for (int b = 0; b < speed; b++) {
+      Cell current = stack.get(0);
+      int tempindex = 0;
+      for (int i = 0; i < stack.size(); i++) {
+        if (current.getCost() > stack.get(i).getCost()) {
+          current = stack.get(i);
+          tempindex = i;
+        }
       }
-    }
 
-    if (current.right!=null&&current.right.get()) {
-      if (maze[current.x+1][current.y].pre == null) {
-        maze[current.x+1][current.y].pre = current;
-        maze[current.x+1][current.y].cost = current.cost + 1;
-        stack.add(maze[current.x+1][current.y]);
+      if (current.right!=null&&current.right.get()) {
+        if (maze[current.x+1][current.y].pre == null) {
+          maze[current.x+1][current.y].pre = current;
+          maze[current.x+1][current.y].cost = current.cost + 1;
+          stack.add(maze[current.x+1][current.y]);
+          if (current.x+1 == goalx) {
+            if (current.y == goaly) {
+              phase = 2;
+              println("2");
+              break;
+            }
+          }
+        }
       }
-    }
-    if (current.left!=null&&current.left.get()) {
-      if (maze[current.x-1][current.y].pre == null) {
-        maze[current.x-1][current.y].pre = current;
-        maze[current.x-1][current.y].cost = current.cost + 1;
-        stack.add(maze[current.x-1][current.y]);
+      if (current.left!=null&&current.left.get()) {
+        if (maze[current.x-1][current.y].pre == null) {
+          maze[current.x-1][current.y].pre = current;
+          maze[current.x-1][current.y].cost = current.cost + 1;
+          stack.add(maze[current.x-1][current.y]);
+          if (current.x-1 == goalx) {
+            if (current.y == goaly) {
+              phase = 2;
+              println("2");
+              break;
+            }
+          }
+        }
       }
-    }
-    if (current.up!=null&&current.up.get()) {
-      if (maze[current.x][current.y-1].pre == null) {
-        maze[current.x][current.y-1].pre = current;
-        maze[current.x][current.y-1].cost = current.cost + 1;
-        stack.add(maze[current.x][current.y-1]);
+      if (current.up!=null&&current.up.get()) {
+        if (maze[current.x][current.y-1].pre == null) {
+          maze[current.x][current.y-1].pre = current;
+          maze[current.x][current.y-1].cost = current.cost + 1;
+          stack.add(maze[current.x][current.y-1]);
+          if (current.x == goalx) {
+            if (current.y-1 == goaly) {
+              phase = 2;
+              println("2");
+              break;
+            }
+          }
+        }
       }
-    }
-    if (current.down!=null&&current.down.get()) {
-      if (maze[current.x][current.y+1].pre == null) {
-        maze[current.x][current.y+1].pre = current;
-        maze[current.x][current.y+1].cost = current.cost + 1;
-        stack.add(maze[current.x][current.y+1]);
+      if (current.down!=null&&current.down.get()) {
+        if (maze[current.x][current.y+1].pre == null) {
+          maze[current.x][current.y+1].pre = current;
+          maze[current.x][current.y+1].cost = current.cost + 1;
+          stack.add(maze[current.x][current.y+1]);
+          if (current.x == goalx) {
+            if (current.y+1 == goaly) {
+              phase = 2;
+              println("2");
+              break;
+            }
+          }
+        }
       }
+      stack.remove(tempindex);
+      //if (stack.size() == 0) {
+      //  phase = 2;
+      //  println("2");
+      //  break;
+      //}
     }
-    stack.remove(tempindex);
     background(255);
     display();
-    if (stack.size() == 0) {
-      phase = 2;
-      println("2");
-    }
+    //if (phase == 2){
+    //  if (save){
+    //    saveFrame("pretty.png");
+    //  }
+    //}
   } else if (phase == 2) {
     background(255);
     end();
     noLoop();
     println("done");
-    saveFrame("solu"+"w"+mw+"h"+mw+"s"+seed);
+    if (save) {
+      saveFrame("solu"+"w"+mw+"h"+mw+"s"+seed);
+    }
   }
 }
 void display() {
+
   translate((width-(mw*cellsize))/2, (height-(mh*cellsize))/2);
   noStroke();
   //for (int x = 0; x < mw; x++) {
@@ -137,6 +180,7 @@ void display() {
   noFill();
   for (int x = 0; x < mw; x++) {
     for (int y = 0; y < mh; y++) {
+      colorMode(RGB, 255);
       stroke(0);
       if (maze[x][y].right != null&&!maze[x][y].right.get()) {
         line(x*cellsize+cellsize, y*cellsize, x*cellsize+cellsize, y*cellsize+cellsize);
@@ -144,17 +188,24 @@ void display() {
       if (maze[x][y].down != null&&!maze[x][y].down.get()) {
         line(x*cellsize, y*cellsize+cellsize, x*cellsize+cellsize, y*cellsize+cellsize);
       }
-      stroke(255, 0, 0);
-      if (maze[x][y].pre != null) {
-        line(maze[x][y].x*cellsize+cellsize/2, maze[x][y].y*cellsize+cellsize/2, maze[x][y].pre.x*cellsize+cellsize/2, maze[x][y].pre.y*cellsize+cellsize/2);
+      //stroke(255, 0, 0);
+      if (phase == 1) {
+        if (maze[x][y].pre != null) {
+
+
+          stroke(255, 0, 0);
+          line(maze[x][y].x*cellsize+cellsize/2, maze[x][y].y*cellsize+cellsize/2, maze[x][y].pre.x*cellsize+cellsize/2, maze[x][y].pre.y*cellsize+cellsize/2);
+        }
       }
     }
   }
   noFill();
+  colorMode(RGB, 255);
   stroke(0);
   rect(0, 0, mw*cellsize, mh*cellsize);
 }
 void end() {
+  colorMode(RGB, 255);
   translate((width-(mw*cellsize))/2, (height-(mh*cellsize))/2);
   strokeWeight(wallsize);
   noFill();
@@ -173,7 +224,7 @@ void end() {
   stroke(255, 0, 0);
   Cell current = maze[goalx][goaly];
   while (current.pre != current) {
-    line(current.x*cellsize+cellsize/2,current.y*cellsize+cellsize/2,current.pre.x*cellsize+cellsize/2,current.pre.y*cellsize+cellsize/2);
+    line(current.x*cellsize+cellsize/2, current.y*cellsize+cellsize/2, current.pre.x*cellsize+cellsize/2, current.pre.y*cellsize+cellsize/2);
     current = current.pre;
   }
   println("happy");
