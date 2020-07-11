@@ -1,10 +1,10 @@
 import java.util.Collections;
 import java.util.Random;
 
-final long seed = 21l;
-final int cellsize = 5;
-final int mw = 100;
-final int mh = 100;
+final long seed = 2l;
+final int cellsize = 10;
+final int mw = 30;
+final int mh = 30;
 final int wallsize = 1;
 
 final int beginx = 0;
