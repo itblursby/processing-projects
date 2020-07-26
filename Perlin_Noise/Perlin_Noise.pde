@@ -1,7 +1,7 @@
 float a = 21.3, 
   b = 48.2, 
   c = 385.2;
-float noiseScale = 30;
+float noiseScale = 100;
 void setup() {
   size(600, 600);
   //noiseDetail(4,0.5);

@@ -14,7 +14,7 @@ void setup() {
   noFill();
 }
 int max = 4;
-int iterations = 13;
+int iterations = 6;
 ArrayList<Circle[]> queue = new ArrayList(0);
 void draw() {
   //colorMode(HSB, 100);

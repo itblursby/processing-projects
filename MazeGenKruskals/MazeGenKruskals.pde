@@ -2,9 +2,9 @@ import java.util.Collections;
 import java.util.Random;
 
 final long seed = 2l;
-final int cellsize = 10;
-final int mw = 30;
-final int mh = 30;
+final int cellsize = 6;
+final int mw = 100;
+final int mh = 100;
 final int wallsize = 1;
 
 final int beginx = 0;
@@ -25,7 +25,7 @@ ArrayList<Cell> stack = new ArrayList<Cell>(100);
 //2 for done
 int phase = 0;
 void setup() {
-  size(700, 700);
+  size(620, 620);
   for (int x = 0; x < mw; x++) {
     for (int y = 0; y < mh; y++) {
       maze[x][y] = new Cell(x, y);
@@ -84,7 +84,6 @@ void draw() {
           tempindex = i;
         }
       }
-
       if (current.right!=null&&current.right.get()) {
         if (maze[current.x+1][current.y].pre == null) {
           maze[current.x+1][current.y].pre = current;
