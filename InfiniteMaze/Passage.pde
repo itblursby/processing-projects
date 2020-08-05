@@ -1,5 +1,6 @@
 class Passage {
   boolean passable;
+  boolean previous;
   Cell A;
   Cell B;
   Passage(Cell A_, Cell B_) {
@@ -8,7 +9,6 @@ class Passage {
     B = B_;
   }
   void unlock(){
-    
     passable = true;
     A.join(B);
   }

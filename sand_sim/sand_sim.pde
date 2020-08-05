@@ -1,6 +1,7 @@
 Cell[][] particles;
 int size = 3;
 void setup() {  
+  frameRate(200);
   noStroke();
   fill(0);
   size(400, 400);

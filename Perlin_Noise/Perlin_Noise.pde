@@ -1,52 +1,46 @@
+//used for random
 float a = 21.3, 
   b = 48.2, 
   c = 385.2;
-float noiseScale = 100;
+float noiseScale = 10;
 void setup() {
-  size(600, 600);
-  //noiseDetail(4,0.5);
+  size(200, 200);
 }
 int p = 0;
 float x, y;
 void draw() {
   loadPixels();
   for (int i = 0; i < 1000; i++) {
-
     float x = p%width;
     float y = p/width;
     float n = newnoise(x/noiseScale, y/noiseScale);
-
-
     pixels[p] = color((n+1)*255/2);    
-    //if (n > 0) {
-    //  pixels[p] = color(255-(n)*255, 255, 255);
-    //} else {
-    //  pixels[p] = color(255, 255, 255-(-n)*255);
-    //}
     p++;
     if (p >= pixels.length) {
-      print("bruh");
       break;
     }
   }
   updatePixels();
   if (p >= width*height) {
-    print("bruh");
     saveFrame();
     noLoop();
   }
 }
-
+//creates a random value for 0 to 1 for
+//every integer coordinate
 float hash(float x, float y) {
   return abs(pow((a+b*x+c*y)%(138), 3)%1);
 }
+//extrapolates with 6t^5-15t^4+10t^3
 float extrapo(float t) {
+  //return t;
   return 6*pow(t, 5)-15*pow(t, 4)+10*pow(t, 3);
   //if (t > 0.5) {
   //  return 1;
   //}
   //return 0;
 }
+//noise function with my implementation
 float newnoise(float x, float y) {
   int x1 = floor(x);
   int y1 = floor(y);

@@ -1,28 +1,39 @@
-PVector prevpos;
-PVector pos;
-PVector center = new PVector(300, 300);
-PVector testpos;
-float dt = 1; //delta time
-void setup() {
-  print(Float.MIN_VALUE);
-  size(600, 600);
-  float ran = 0;
-  prevpos = new PVector(cos(ran)*200+300, sin(ran)*200+300);
-  pos = new PVector(cos(ran)*200+300, sin(ran)*200+300);
-  pixelDensity(1);
-}
+final float LENGTH = 100f;
+final PVector gravity = new PVector(0f, 1f);
+final float stiff = 0.1f;
+final float dt = 1;
+Bob[] bobs = new Bob[3];
 
+void setup() {
+
+  size(800, 800);
+  bobs[0] = new Bob(new PVector(0f, 0f));
+  bobs[1] = new Bob(new PVector(100f, 0f));
+  bobs[2] = new Bob(new PVector(200f, 0f));
+
+  fill(0, 255, 0);
+  stroke(0);
+}
 void draw() {
   background(255);
-  line(300, 300, pos.x, pos.y);
-  ellipse(pos.x, pos.y, 30, 30);
-  //println(pos.x + " " + pos.y);
-  //ellipse(p.x, p.y, 30, 30);
-  for (int i = 0; i < (1/dt); i++) {
-    PVector vel = PVector.sub(pos, prevpos);
-    pos.add(PVector.mult(vel, dt));
-    prevpos.add(PVector.mult(vel, dt));
-    pos.add(0*dt, 1*dt);
-    pos = PVector.add(center, PVector.mult(PVector.sub(pos, center), (200.0/pos.dist(center))));
+  translate(width/2, height/2);
+  for (int i = 0; i < bobs.length; i++) {
+    if (i < bobs.length-1) {
+      line(bobs[i].getX(), bobs[i].getY(), bobs[i+1].getX(), bobs[i+1].getY());
+    }
+    ellipse(bobs[i].getX(), bobs[i].getY(), 20, 20);
+  }
+
+  for (int i = 1; i < bobs.length; i++) {
+    bobs[i].move();
+  }
+  for (int j = 0; j < 100; j++) {
+    for (int i = 1; i < bobs.length; i++) {
+      bobs[i].constrain(bobs[i-1]);
+      if (i < bobs.length-1) {
+        bobs[i].constrain(bobs[i+1]);
+      }
+      bobs[i].extend();
+    }
   }
 }
