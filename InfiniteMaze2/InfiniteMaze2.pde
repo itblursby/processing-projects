@@ -1,19 +1,13 @@
 import java.util.Random;
 import java.util.Collections;
-
 final long seed = 112l;
 Random rand = new Random(seed);
-
-//width and height of maze that is generated
 final int BIG_MAZE = 10;
-//width and height of maze that is actually rendered/visable.
 final int SMALL_MAZE = 6;
 final int CELL_SIZE = 20;
-
 final int OFFSET = (BIG_MAZE - SMALL_MAZE)/2;
-
 Cell[][] maze = new Cell[BIG_MAZE][BIG_MAZE];
-
+Cell[][] nmaze = new Cell[BIG_MAZE][BIG_MAZE];
 ArrayList<Passage> passages = new ArrayList<Passage>(2*(BIG_MAZE*BIG_MAZE-BIG_MAZE));
 
 enum Direction {
@@ -72,10 +66,10 @@ void display() {
     }
   }
 }
-void shift(Direction d){
-  for (int x = max(0,d.x); x < min(BIG_MAZE,BIG_MAZE+d.x); x++){
-    for (int y = max(0,d.y); y < min(BIG_MAZE,BIG_MAZE+d.y); y++){
-      maze[x][y] = maze[
+void shift(Direction d) {
+  for (int x = max(0, d.x); x < min(BIG_MAZE, BIG_MAZE+d.x); x++) {
+    for (int y = max(0, d.y); y < min(BIG_MAZE, BIG_MAZE+d.y); y++) {
+      nmaze[x][y]
     }
   }
 }
