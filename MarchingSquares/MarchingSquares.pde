@@ -29,12 +29,12 @@ void setup() {
 void draw() {
   background(255);loadPixels();
   
-  for (int x = 0; x < width; x++){
-    for (int y = 0; y < height; y++){
-      pixels[x+y*width] = color(255*noise(x/scale,y/scale));
-    }
-  }
-  updatePixels();
+  //for (int x = 0; x < width; x++){
+  //  for (int y = 0; y < height; y++){
+  //    pixels[x+y*width] = color(255*noise(x/scale,y/scale));
+  //  }
+  //}
+
   for (int x = 0; x < 1+width/cw; x++) {
     for (int y = 0; y < 1+height/cw; y++) {
 

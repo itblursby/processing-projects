@@ -45,7 +45,7 @@ void draw() {
       zreal = nreal;
       zimag = nimag;
       if (zreal * zreal + zimag * zimag > 4) {
-        pixels[a] = color(sin(i/40f)*200+55);
+        pixels[a] = color((i&1)*255);//color(sin(i/40f)*200+55);
         //break;
       }
     }
