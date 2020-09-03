@@ -15,7 +15,7 @@ void setup() {
   strokeWeight(0.5);
   stroke(255,0,0);
   size(100, 100);
-  pixelDensity(displayDensity());
+  //pixelDensity(displayDensity());
   x = width/6;
   y = height*5/6;
   l = width*2/3;

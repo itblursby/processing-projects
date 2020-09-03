@@ -35,7 +35,7 @@ void draw() {
       }
 
 
-      float s = smoothstep(a, a+6, sleng - leng);
+      float s = smoothstep(a, a, sleng - leng);
       color c = lines[index].col;
       pixels[j*pixelWidth+i] = color(red(c)*s, green(c)*s, blue(c)*s);
 

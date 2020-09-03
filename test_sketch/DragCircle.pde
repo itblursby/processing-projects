@@ -47,7 +47,7 @@ class DragCircle {
       }
     }
   }
-  void show() {
+  void display() {
     ellipse(x, y, r+r, r+r);
   }
 }

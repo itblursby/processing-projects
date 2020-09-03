@@ -1,4 +1,4 @@
-Shift[] arr = new Shift[30];
+Shift[] arr = new Shift[4];
 void setup() {
   size(375, 667);
   for (int i = 0; i < arr.length; i++) {
