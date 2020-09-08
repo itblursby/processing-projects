@@ -11,8 +11,9 @@ void setup() {
   //for (int i = 0; i < height/size; i++) {
   //  line(0, i*size, width, i*size);
   //}
-  strokeWeight(size);
-  stroke(255, 0, 0);
+  noStroke();  
+  fill(255, 0, 0);
+  ellipse(300, 300, size, size);
 }
 int x = 0;
 void draw() {
@@ -21,7 +22,7 @@ void draw() {
   x++;
   for (int i = 0; i < 1000; i++) {
     PVector s = pd.next();
-    point(s.x, s.y);
+    ellipse(s.x, s.y, size, size);
   }
   noLoop();
 }

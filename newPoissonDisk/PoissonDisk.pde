@@ -1,6 +1,6 @@
 public class PoissonDisk {
   //2d Poisson disk sampling
-  private float phi = 1.0/(1 << 15);//(1+sqrt(5))/2;
+  private float phi = 1.0/(1 << 10);//(1+sqrt(5))/2;
   private HashMap<Float, Integer> grid = new HashMap<Float, Integer>();
   private ArrayList<Integer> active = new ArrayList(0);
   private ArrayList<PVector> samples = new ArrayList(0);

@@ -31,7 +31,7 @@ void draw() {
   //}
   if (pos > width*height*4){
     noLoop();
-    saveFrame();
+    //saveFrame();
   }
 }
 class Turn {
