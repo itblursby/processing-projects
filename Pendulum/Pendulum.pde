@@ -32,7 +32,7 @@ void draw() {
   //bobs[0].pos.x = mouseX-width/2;
   //bobs[0].pos.y = mouseY-height/2;
 
-  for (int j = 0; j < 100; j++) {
+  for (int j = 0; j < 1000; j++) {
     for (int i = 1; i < bobs.length; i++) {
       bobs[i].constrain(bobs[i-1]);
       if (i < bobs.length-1) {
