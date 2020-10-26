@@ -1,4 +1,3 @@
-
 final int resolution = 10;
 final int amount = 10;
 final int threshold = 1;
