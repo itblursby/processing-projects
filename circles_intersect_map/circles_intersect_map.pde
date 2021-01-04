@@ -6,7 +6,7 @@ Circle[] circles;
 int a = 2000;
 
 float arcsin[] = new float[2*a+1];
-int minradius = 30;
+int minradius = 50;
 int maxradius;
 int num = 100;
 Sampler s = new Sampler();
@@ -19,7 +19,7 @@ void setup() {
     arcsin[i+a] = asin((float)i/a);
     //System.out.println(asin((float)i/100));
   }
-  size(600, 600);
+  size(1440,900);
   maxradius = width/20;
   circles = new Circle[num];
   pixelDensity(displayDensity());

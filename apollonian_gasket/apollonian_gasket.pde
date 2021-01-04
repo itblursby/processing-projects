@@ -35,7 +35,7 @@ void draw() {
   //TODO{
   queue = new ArrayList(0);
   queue.add(new Circle[] {i1, i2, i3});
-  println(queue.size());
+  //println(queue.size());
   //int test1 = 0;
   //while (queue.size()>0/*&&queue.size()<10000*/) {
 

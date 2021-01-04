@@ -1,24 +1,26 @@
-IntList i = new IntList();
+ArrayList<Integer> i = new ArrayList<Integer>();
 int sw = 1;
-int sizex = 20;
-int sizey = 10;
+int sizex = 75;
+int sizey = 75;
 int a = 0;
 int h;
 int j = 0;
 int st; 
+PImage bg;
 void setup() {
   //noFill();
   //noStroke();
+  bg = loadImage("floyd.png");
   st = color(255);
   background(0, 0, 0);
   size(600, 600);
   pixelDensity(displayDensity());
   stroke(st);
   strokeWeight(sw);
-  i.append(sw);
-  i.append(sw);
-  i.append(width-sw);
-  i.append(height-sw);
+  i.add(sw);
+  i.add(sw);
+  i.add(width-sw);
+  i.add(height-sw);
   randomcolor();
   rect(sw, sw, width-2*sw, height-2*sw);
   frameRate(60);
@@ -35,17 +37,17 @@ void draw() {
         //
         if (i.get(a+2)-i.get(a)>sizex||h-i.get(a+1)>sizey) {
           //i.splice(a+4, 0, i.get(a)+j, i.get(a+1)+j, i.get(a+2)-j, h-j);
-          i.append(i.get(a)+j);
-          i.append(i.get(a+1)+j);
-          i.append(i.get(a+2)-j);
-          i.append(h-j);
+          i.add(i.get(a)+j);
+          i.add(i.get(a+1)+j);
+          i.add(i.get(a+2)-j);
+          i.add(h-j);
         }
         if (i.get(a+2)-i.get(a)>sizex||i.get(a+3)-h>sizey) {
           //i.splice(a+4, 0, i.get(a)+j, h, i.get(a+2)-j, i.get(a+3)-j);
-          i.append(i.get(a)+j);
-          i.append(h);
-          i.append(i.get(a+2)-j);
-          i.append(i.get(a+3)-j);
+          i.add(i.get(a)+j);
+          i.add(h);
+          i.add(i.get(a+2)-j);
+          i.add(i.get(a+3)-j);
         }
         randomcolor();
         drect(i.get(a)+j, i.get(a+1)+j, i.get(a+2)-i.get(a)-2*j, h-i.get(a+1)-2*j);
@@ -62,17 +64,17 @@ void draw() {
         h = randint(i.get(a), i.get(a+2));
         if (h-i.get(a)>sizex||i.get(a+3)-i.get(a+1)>sizey) {
           //i.splice(a+4, 0, i.get(a)+j, i.get(a+1)+j, h, i.get(a+3)-j);
-          i.append(i.get(a)+j);
-          i.append(i.get(a+1)+j);
-          i.append(h);
-          i.append(i.get(a+3)-j);
+          i.add(i.get(a)+j);
+          i.add(i.get(a+1)+j);
+          i.add(h);
+          i.add(i.get(a+3)-j);
         }
         if (i.get(a+2)-h>sizex||i.get(a+3)-i.get(a+1)>sizey) {
           //i.splice(a+4, 0, h+j, i.get(a+1)+j, i.get(a+2)-j, i.get(a+3)-j);
-          i.append(h+j);
-          i.append(i.get(a+1)+j);
-          i.append(i.get(a+2)-j);
-          i.append(i.get(a+3)-j);
+          i.add(h+j);
+          i.add(i.get(a+1)+j);
+          i.add(i.get(a+2)-j);
+          i.add(i.get(a+3)-j);
         }
         randomcolor();
         drect(i.get(a)+j, i.get(a+1)+j, h-i.get(a)-j, i.get(a+3)-i.get(a+1)-2*j);
@@ -86,7 +88,7 @@ void draw() {
       }
       if (i.size() == 0) {
         noLoop();
-        //saveCanvas("mycanvas", "png");
+        saveFrame("mycanvas.png");
       }
     }
   }
@@ -96,7 +98,7 @@ void randomcolor() {
   /*
   if (random()
   */
-  fill(0);
+  //fill(0);
 }
 
 int randint(int a, int b) {
@@ -108,5 +110,6 @@ void drect(int x, int y, int l, int w) {
       //fill(st);
     }
     rect(x, y, l, w);
+    //image(bg,x,y,l,w);
   }
 }

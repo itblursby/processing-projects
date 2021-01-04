@@ -8,13 +8,15 @@ Rectangle middle;
 ArrayList<Rectangle> rects = new ArrayList<Rectangle>(0);
 void setup() {
   rectMode(CORNERS);
-  size(500, 500);
+  size(800, 800);
   middle = new Rectangle(-width/2, -height/2, width/2, height/2);
 }
 
 void draw() {
   background(255);
+  
   translate(width/2, height/2);
+  //rotate(frameCount/20.);
   rectMode(CORNERS);
   while (middle.getWidth() > min || middle.getHeight() > min) {
     temp = random(mincut, maxcut);
