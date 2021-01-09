@@ -1,7 +1,7 @@
 final int scale = 600; //pereferably something that divides the width/height
 final int samples = 4;
 final int margin = 10;
-final int circles = 0;
+final int circles = 20;
 final int color1 = 0xffc46008;
 final int color2 = 0xffbfab3b;
 final int color3 = 0xff6c22a1;

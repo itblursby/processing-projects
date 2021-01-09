@@ -35,8 +35,8 @@ public class PoissonDisk {
         boolean good = true;
         if (!grid.containsKey(hashkey)) {
         checking:
-          for (int i = -1; i < 2; i++) {
-            for (int j = -1; j < 2; j++) {
+          for (int i = -2; i < 3; i++) {
+            for (int j = -2; j < 3; j++) {
               if (grid.containsKey(hashkey + i + (j * phi))) {
                 PVector test = samples.get(grid.get(hashkey + i + (j * phi)));
                 if (((test.x - nx)*(test.x - nx))+((test.y - ny)*(test.y - ny)) <= radius*radius) {
