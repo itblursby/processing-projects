@@ -1,6 +1,6 @@
 PShader test1;
 void setup(){
-  test1 = loadShader("testfrag.glsl");
+  test1 = loadShader("testvert.glsl","testfrag.glsl");
   size(600,600,P2D);
   shader(test1);
 }
