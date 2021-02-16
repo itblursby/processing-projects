@@ -1,0 +1,22 @@
+{
+"tuppers":
+  [ {
+  "id":
+  22421046, "user_id":
+  "431544605209788416", "name":
+  "bot", "position":
+  0, "avatar_url":
+  "https://i.imgur.com/ZpijZpg.png", "brackets":
+  [";", ""], "posts":
+  6, "show_brackets":
+  false, "birthday":
+  null, "description":
+  null, "tag":
+  null, "group_id":
+  null, "group_pos":
+  null, "created_at":
+  "2021-02-05T00:00:00.000Z", "nick":
+    null
+  }], "groups":
+  []
+}
