@@ -62,7 +62,7 @@ void draw() {
   rect(0, 0, width, height);
   resetShader();
   //rect(mouseX,mouseY,100,100);
-  //saveFrame("frames1/mystery####.png");
+  //saveFrame("frames/mystery####.tiff");
 }
 void keyPressed() {
   if (key == 'p') {
