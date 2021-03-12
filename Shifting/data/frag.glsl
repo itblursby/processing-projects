@@ -5,7 +5,7 @@ precision mediump int;
 
 //#define PROCESSING_COLOR_SHADER
 #define AMOUNT 20
-#define COLOR_MODE 3
+#define COLOR_MODE 2
 uniform float disDensity;
 uniform float[AMOUNT] pos1;
 uniform float[AMOUNT] pos2;

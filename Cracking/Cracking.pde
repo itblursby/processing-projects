@@ -9,7 +9,6 @@ float[] spin = new float[AMOUNT];
 
 void setup() {
   size(600, 600, P2D);
-
   dense = displayDensity();
   pixelDensity(displayDensity());
   for (int i = 0; i < AMOUNT; i++) {
@@ -17,6 +16,14 @@ void setup() {
   }
   frag = loadShader("frag.glsl");
   frag.set("dense", dense);
+  frameRate(60);
 }
 void draw() {
+  for (int i = 0; i < AMOUNT; i++){
+    circles[i].update();
+  }
+  background(0);
+  //resetShader();
+  shader(frag);
+  rect(0, 0, width, height);
 }

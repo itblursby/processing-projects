@@ -1,5 +1,5 @@
 public class Circle {
-  private float posx,posy;
+  private PVector pos;
   private float radius;
   private float angle;
   private PVector move;
@@ -7,22 +7,22 @@ public class Circle {
   private static final float mover = 3;
   private static final float spinr = 0.1;
   public Circle() {
-    posx = random(width);
-    posy = random(height);
+    pos = new PVector(random(width),random(height));
+    //posy = random(height);
     radius = random(min(width, height)/2.-1);
     move = new PVector(random(-mover, mover), random(-mover, mover));
     spin = random(-spinr, spinr);
   }
   public void update() {
-    posx += move.x;
-    posy += move.y;
+    pos.x += move.x;
+    pos.y += move.y;
     angle += spin;
   }
   public float getX() {
-    return posx;
+    return pos.x;
   }
   public float getY() {
-    return posy;
+    return pos.y;
   }
   public float getRad() {
     return radius;
