@@ -1,5 +1,5 @@
 PShader frag;
-final int AMOUNT = 1;
+final int AMOUNT = 20;
 float dense = 1;
 Circle[] circles = new Circle[AMOUNT];
 float[] posx = new float[AMOUNT];
@@ -10,7 +10,7 @@ float[] cosine = new float[AMOUNT];
 
 
 void setup() {
-  size(600, 300, P2D);
+  size(600, 600, P2D);
   dense = displayDensity();
   pixelDensity(displayDensity());
   for (int i = 0; i < AMOUNT; i++) {
