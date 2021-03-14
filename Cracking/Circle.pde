@@ -9,7 +9,7 @@ public class Circle {
   public Circle() {
     pos = new PVector(random(width), random(height));
     //posy = random(height);
-    radius = 4000+random(min(width, height)/2.-1);
+    radius = height/2.;//random(min(width, height)/2.-1);
     move = new PVector(random(-mover, mover), random(-mover, mover));
     spin = random(-spinr, spinr);
     angle = random(TAU);
@@ -20,8 +20,8 @@ public class Circle {
     pos.y += move.y;
     pos.x = (pos.x+width)%width;
     pos.y = (pos.y+height)%height;
-    //angle += spin;
-    wane();
+    angle += spin;
+   // wane();
     angle = angle % TAU;
     
   }
@@ -42,7 +42,7 @@ public class Circle {
   }
   public void wane(){
     
-    angle *= .995;
+    //angle *= .995;
     //radius*=1.01;
   }
 }
