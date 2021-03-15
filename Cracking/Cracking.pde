@@ -1,5 +1,5 @@
 PShader frag;
-final int AMOUNT = 20;
+final int AMOUNT = 30;
 float dense = 1;
 Circle[] circles = new Circle[AMOUNT];
 float[] posx = new float[AMOUNT];

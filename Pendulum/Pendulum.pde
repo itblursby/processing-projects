@@ -8,8 +8,12 @@ void setup() {
 
   size(800, 800);
   bobs[0] = new Bob(new PVector(0f, 0f));
-  bobs[1] = new Bob(new PVector(100f, 0f));
-  bobs[2] = new Bob(new PVector(200f, 0f));
+  for (int i = 1; i < bobs.length; i++) {
+    float rand = random(TAU);
+    bobs[i] = new Bob(new PVector(bobs[i-1].getX()+cos(rand)*100,bobs[i-1].getY()+sin(rand)*100));
+  }
+  //bobs[1] = new Bob(new PVector(100f, 0f));
+  //bobs[2] = new Bob(new PVector(200f, 0f));
   //bobs[3] = new Bob(new PVector(300f, 0f));
   //bobs[4] = new Bob(new PVector(400f, 0f));
 
@@ -32,7 +36,7 @@ void draw() {
   //bobs[0].pos.x = mouseX-width/2;
   //bobs[0].pos.y = mouseY-height/2;
 
-  for (int j = 0; j < 1000; j++) {
+  for (int j = 0; j < 40; j++) {
     for (int i = 1; i < bobs.length; i++) {
       bobs[i].constrain(bobs[i-1]);
       if (i < bobs.length-1) {
