@@ -47,4 +47,5 @@ void draw() {
   //for (Circle a : circles) {
   //  a.display();
   //}
+  //saveFrame("frames/frame######.tiff");
 }
