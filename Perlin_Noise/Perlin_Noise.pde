@@ -2,7 +2,7 @@
 float a = 21.3, 
   b = 48.2, 
   c = 385.2;
-float noiseScale = 10;
+float noiseScale = 30;
 void setup() {
   size(200, 200);
 }

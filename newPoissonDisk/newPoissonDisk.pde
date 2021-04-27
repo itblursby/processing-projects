@@ -16,9 +16,13 @@ void draw() {
   //background(255);
   //println("x:"+x);
   x++;
-  for (int i = 0; i < 1000; i++) {
+  for (int i = 0; i < 20; i++){
     PVector s = pd.next();
-    ellipse(s.x, s.y, size, size);
+    ellipse(s.x,s.y,size,size);
   }
-  noLoop();
+  //for (int i = 0; i < 1000; i++) {
+  //  PVector s = pd.next();
+  //  ellipse(s.x, s.y, size, size);
+  //}
+  //noLoop();
 }
