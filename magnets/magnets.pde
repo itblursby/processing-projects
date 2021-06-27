@@ -1,6 +1,6 @@
 //PVector point1;
 //PVector point2;
-int pointsTotal = 100;
+int pointsTotal = 5;
 PVector[] points = new PVector[pointsTotal];
 int[] colors = new int[pointsTotal];
 void setup() {
@@ -19,6 +19,9 @@ void setup() {
     ellipse(points[i].x, points[i].y, 20, 20);
     colors[i] = color(random(20,70), random(70,100), random(50,100));
   }
+  points[0] = new PVector(100, 300);
+  points[1] = new PVector(500, 300);
+  blendMode(DARKEST);
 }
 void draw() {
 
@@ -27,6 +30,7 @@ void draw() {
   }
 }
 void drawSegment(float x, float y) {
+  //float cx = 
   float dx = 0;
   float dy = 0;
   float d;
@@ -46,14 +50,14 @@ void drawSegment(float x, float y) {
       dy += -(points[i].y - y)/d/d;
     }
   }
-  strokeWeight(20);
-  stroke(colors[least],5);
+  strokeWeight(1);
+  fill(colors[least]);
   //dx += -(point2.x - x)/d2/d2;
   //dy += -(point2.y - y)/d2/d2;
   dx *= 1000;
   dy *= 1000;
   //line(x, y, x+dx, y+dy);
-  ellipse(x+dx,y+dy,mindist*5,mindist*5);
+  ellipse(x,y,,mindist);
   //line(x,y,point1.x,point1.y);
 }
 void keyPressed() {
