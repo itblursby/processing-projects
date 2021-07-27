@@ -4,7 +4,7 @@ DragCircle b;
 DragCircle c;
 void setup() {
 
-  size(600, 600);
+  size(200, 200);
   //pixelDensity(displayDensity());
   a = new DragCircle((width/4)+random(width/2), (height/4)+random(height/2), 6);
   b = new DragCircle((width/4)+random(width/2), (height/4)+random(height/2), 6);
@@ -92,7 +92,7 @@ void Apollonian (Circle a, Circle b, Circle c) {
   Apollonianh(a, b, c, true, j, 0);
 }
 void Apollonianh (Circle a, Circle b, Circle c, boolean init, Circle d, int it) {
-  if (it < iterations) {
+  if (it < 4000) {
     //fill(it*10+10, 100, 100);
     Circle[] M = Descartes(a, b, c);
 
